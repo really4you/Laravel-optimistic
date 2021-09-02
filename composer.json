@@ -1,5 +1,5 @@
 {
-    "name": "really4you/Laravel-optimistic",
+    "name": "really4you/laravel-optimistic",
     "description": "Laravel Concurrent updating for model.",
     "require": {
         "php": "^7.1.3",
