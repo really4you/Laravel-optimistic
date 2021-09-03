@@ -54,10 +54,13 @@ trait Optimistic
             // set optimistic where condition
             $query->versionAt($this);
             // set version column condition
-            $dirty[$this->getVersionAt()] = $this->increment($this->getVersionAt());
+            $dirty[$this->getVersionAt()] = $this->setVersionAt4Dirty();
 
+            $isUpdated = $this->setKeysForSaveQuery($query)->update($dirty);
 
-            $this->setKeysForSaveQuery($query)->update($dirty);
+            if($isUpdated === 0){
+                throw new \RuntimeException('数据更新失败，请稍后重试。');
+            }
 
             $this->syncChanges();
 
@@ -65,6 +68,18 @@ trait Optimistic
         }
 
         return true;
+    }
+
+    /**
+     *
+     * @return int|mixed
+     */
+    protected function setVersionAt4Dirty()
+    {
+        $newVersionAt = $this->getAttribute($this->getVersionAt()) + OptimisticStrategy::VERSION_AT_DEFAULT_NUM;
+        $this->setAttribute($this->getVersionAt(), $newVersionAt);
+
+        return $newVersionAt;
     }
 
     /**

@@ -16,5 +16,12 @@ class OptimisticStrategy
      * @var string
      */
     const VERSION_AT = 'version_at';
+
+    /**
+     * default num of the "optimistic" column.
+     *
+     * @var int
+     */
+    const VERSION_AT_DEFAULT_NUM = 1;
 }
 

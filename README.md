@@ -6,12 +6,12 @@ $ composer require really4you/laravel-optimistic
 
 ## Usage
 
-Add `Really4you\LaravelOptimistic\Optimistic` trait to the model and set versionable attributes:
+Add `Really4you\LaravelOptimistic\Optimistic` trait to the model and set Optimistic attributes:
 
 ```php
 use Really4you\laravelOptimistic\Optimistic;
 
-class Post extends Model
+class GoodsPatent extends Model
 {
     use Optimistic;
     
